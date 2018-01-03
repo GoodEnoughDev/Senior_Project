@@ -1,0 +1,61 @@
+
+#n/** Configure pins as #n #t#t #t* Analog #n #t#t #t* Input #n #t#t #t* Output#n #t#t #t* EVENT_OUT#n #t#t #t* EXTI
+*/
+static void MX_GPIO_Init(void)
+{
+#n
+#tGPIO_InitTypeDef GPIO_InitStruct;
+#n#t/* GPIO Ports Clock Enable */
+#t__HAL_RCC_GPIOC_CLK_ENABLE();
+#t__HAL_RCC_GPIOA_CLK_ENABLE();
+#t__HAL_RCC_GPIOB_CLK_ENABLE();
+#t__HAL_RCC_GPIOE_CLK_ENABLE();
+#t__HAL_RCC_GPIOD_CLK_ENABLE();
+#n#t/*Configure GPIO pin Output Level */
+#tHAL_GPIO_WritePin(GPIOA, Z80_WAIT_Pin|Z80_INT_Pin|Z80_BUSREQ_Pin, GPIO_PIN_SET);
+#n#t/*Configure GPIO pin Output Level */
+#tHAL_GPIO_WritePin(Z80_RESET_GPIO_Port, Z80_RESET_Pin, GPIO_PIN_RESET);
+#n#t/*Configure GPIO pin Output Level */
+#tHAL_GPIO_WritePin(GPIOE, SRAM_CS_Pin|SRAM_OE_Pin, GPIO_PIN_SET);
+#n#t/*Configure GPIO pin Output Level */
+#tHAL_GPIO_WritePin(SRAM_WE_GPIO_Port, SRAM_WE_Pin, GPIO_PIN_SET);
+#n#t/*Configure GPIO pin Output Level */
+#tHAL_GPIO_WritePin(OnboardLED_GPIO_Port, OnboardLED_Pin, GPIO_PIN_RESET);
+#n#t/*Configure GPIO pins : ADDRESS_BUS13_Pin ADDRESS_BUS14_Pin ADDRESS_BUS15_Pin ADDRESS_BUS0_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t ADDRESS_BUS1_Pin ADDRESS_BUS2_Pin ADDRESS_BUS3_Pin ADDRESS_BUS4_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t ADDRESS_BUS5_Pin ADDRESS_BUS6_Pin ADDRESS_BUS7_Pin ADDRESS_BUS8_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t ADDRESS_BUS9_Pin ADDRESS_BUS10_Pin ADDRESS_BUS11_Pin ADDRESS_BUS12_Pin */
+#tGPIO_InitStruct.Pin = ADDRESS_BUS13_Pin|ADDRESS_BUS14_Pin|ADDRESS_BUS15_Pin|ADDRESS_BUS0_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t|ADDRESS_BUS1_Pin|ADDRESS_BUS2_Pin|ADDRESS_BUS3_Pin|ADDRESS_BUS4_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t|ADDRESS_BUS5_Pin|ADDRESS_BUS6_Pin|ADDRESS_BUS7_Pin|ADDRESS_BUS8_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t|ADDRESS_BUS9_Pin|ADDRESS_BUS10_Pin|ADDRESS_BUS11_Pin|ADDRESS_BUS12_Pin;
+#tGPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+#tGPIO_InitStruct.Pull = GPIO_NOPULL;
+#tHAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+#n#t/*Configure GPIO pins : Z80_WAIT_Pin Z80_INT_Pin Z80_RESET_Pin Z80_BUSREQ_Pin */
+#tGPIO_InitStruct.Pin = Z80_WAIT_Pin|Z80_INT_Pin|Z80_RESET_Pin|Z80_BUSREQ_Pin;
+#tGPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+#tGPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+#tHAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+#n#t/*Configure GPIO pins : Z80_M1_Pin Z80_MREQ_Pin */
+#tGPIO_InitStruct.Pin = Z80_M1_Pin|Z80_MREQ_Pin;
+#tGPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+#tGPIO_InitStruct.Pull = GPIO_NOPULL;
+#tHAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+#n#t/*Configure GPIO pins : Z80_IORQ_Pin Z80_RD_Pin Z80_WR_Pin Z80_RFSH_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t Z80_HALT_Pin Z80_BUSACK_Pin */
+#tGPIO_InitStruct.Pin = Z80_IORQ_Pin|Z80_RD_Pin|Z80_WR_Pin|Z80_RFSH_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t|Z80_HALT_Pin|Z80_BUSACK_Pin;
+#tGPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+#tGPIO_InitStruct.Pull = GPIO_NOPULL;
+#tHAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+#n#t/*Configure GPIO pins : SRAM_CS_Pin SRAM_OE_Pin */
+#tGPIO_InitStruct.Pin = SRAM_CS_Pin|SRAM_OE_Pin;
+#tGPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+#tGPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+#tHAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+#n#t/*Configure GPIO pins : SRAM_WE_Pin OnboardLED_Pin */
+#tGPIO_InitStruct.Pin = SRAM_WE_Pin|OnboardLED_Pin;
+#tGPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+#tGPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+#tHAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+#n#t/*Configure GPIO pins : DATA_BUS6_Pin DATA_BUS7_Pin DATA_BUS0_Pin DATA_BUS1_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t DATA_BUS2_Pin DATA_BUS3_Pin DATA_BUS4_Pin DATA_BUS5_Pin */
+#tGPIO_InitStruct.Pin = DATA_BUS6_Pin|DATA_BUS7_Pin|DATA_BUS0_Pin|DATA_BUS1_Pin #n#t#t#t#t#t#t#t#t#t#t#t#t#t|DATA_BUS2_Pin|DATA_BUS3_Pin|DATA_BUS4_Pin|DATA_BUS5_Pin;
+#tGPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+#tGPIO_InitStruct.Pull = GPIO_NOPULL;
+#tHAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+#n
+}
+#n
